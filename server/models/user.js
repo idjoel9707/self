@@ -1,6 +1,8 @@
 const mongoose = require('mongoose');
 const { Schema } = mongoose;
 const unique = require("mongoose-unique-validator")
+const { JWT_SECRET, SALT } = require('./../configs/setting')
+const bcrypt = require('bcrypt');
 
 const userSchema = new Schema({
     username: {
@@ -21,18 +23,19 @@ const userSchema = new Schema({
     password: {
         type: String,
         required: [true, `Please enter your password`],
-        match: [/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$/, `Password should have a minimum of 6 characters, minimum of 1 alphabet character, dan 1 numeric character!`]
+        // match: [/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$/, `Password should have a minimum of 6 characters, minimum of 1 alphabet character, dan 1 numeric character!`]
     }
 }, {
     timestamps: true,
     versionKey: false
 })
 
-userSchema.pre("save", async function(next) {
-    let user = this;
-    if(user.password && user.isModified("password")) user.password = await bcrypt.hash(user.password, salt);
-    next()
-})
+// userSchema.pre("save", async function(next) {
+//     let user = this;
+//     if(user.password && user.isModified("password"))
+//          user.password = await bcrypt.hash(user.password, SALT);
+//     next()
+// })
 
 userSchema.post("save", (error, doc, next) => {
     let errorMessage = {}

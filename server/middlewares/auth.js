@@ -1,4 +1,4 @@
-const {JWT_SECRET} = require('./../config/setting')
+const {JWT_SECRET} = require('./../configs/setting')
 const secret = Buffer.from(JWT_SECRET, 'hex')
 const jwt = require('jsonwebtoken')
 

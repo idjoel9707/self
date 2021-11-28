@@ -1,5 +1,5 @@
 const jwt = require('jsonwebtoken')
-const { JWT_SECRET } = require('./../config/setting')
+const { JWT_SECRET } = require('./../configs/setting')
 const secret = Buffer.from(JWT_SECRET, 'hex')
 const { Blog } = require('../models/blog');
 
@@ -66,7 +66,7 @@ class BlogController {
     static async getByCategory(req, res, next) {
         let token = await jwt.verify(req.token, secret)
         try {
-            const { category } = req.body;
+            const { category } = req.params;
 
             let result = await Blog.findOne({ category: category })
 
