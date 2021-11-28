@@ -3,6 +3,10 @@ const { Schema } = mongoose;
 const unique = require("mongoose-unique-validator")
 
 const blogSchema = new Schema({
+    category: {
+        type: String,
+        required: true
+    },
     title: {
         type: String,
         required: true
@@ -13,7 +17,8 @@ const blogSchema = new Schema({
     },
     image: {
         type: String,
-        required: true
+        required: true,
+        // default: ''
     }
 }, {
     timestamps: true,

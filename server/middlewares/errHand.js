@@ -1,21 +1,21 @@
-const errHand = (error, req, res, next) => {
-    if (error) {
-      if (error.status) {
-        return res.status(error.status).json({
-          success: false,
-          message: error.message,
-        });
-      } else if (error.response && error.response.data) {
-        return res.status(400).json({
-          success: false,
-          message: error.response.data.error,
-        });
-      } else {
-        return res.status(400).json({
-          success: false,
-          message: error.message,
-        });
-      }
+const errHand = (err, req, res, next) => {
+    if (err) {
+        if (err.status) {
+            return res.status(err.status).json({
+                success: false,
+                message: error.message,
+            });
+        } else if (err.response && err.response.data) {
+            return res.status(400).json({
+                success: false,
+                message: err.response.data.error,
+            });
+        } else {
+            return res.status(400).json({
+                success: false,
+                message: err.message,
+            });
+        }
     }
   };
 

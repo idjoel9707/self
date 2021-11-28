@@ -1,4 +1,8 @@
 const { User } = require('../models/user');
+const jwt = require('jsonwebtoken')
+const { JWT_SECRET } = require('./../config/setting')
+const secret = Buffer.from(JWT_SECRET, 'hex')
+const bcrypt = require('bcrypt')
 
 class userController {
     static async Login(req, res, next) {
