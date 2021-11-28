@@ -11,19 +11,19 @@ app.use(express.json({ limit: 100000000000}))
 app.use(express.static('public'))
 const server = http.createServer(app)
 const io = require('socket.io')(server)
-// const dotenv = require('dotenv')
-// dotenv.config()
+const dotenv = require('dotenv')
+dotenv.config()
 
 routes(app)
 
-const mongoURI = process.env.MONGOURI;
+const mongoURI = process.env.MONGO_URI;
 
 mongoose.Promise = global.Promise;
 const options = {
     useNewUrlParser: true,
     useUnifiedTopology: true,
-    useFindAndModify: false,
-    useCreateIndex: true
+    // useFindAndModify: false,
+    // useCreateIndex: true
 };
 mongoose.connect(mongoURI, options);
 

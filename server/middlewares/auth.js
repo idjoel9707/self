@@ -20,4 +20,9 @@ function middleware(req, res, next) {
 	}
 }
 
-module.exports = { middleware };
+function tokenGenerator(user) {
+    const {_id, username} = user;
+    return jwt.sign({ _id, username }, secret )
+}
+
+module.exports = { middleware, tokenGenerator };

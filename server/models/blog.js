@@ -5,15 +5,15 @@ const unique = require("mongoose-unique-validator")
 const blogSchema = new Schema({
     title: {
         type: String,
-        require: true
+        required: true
     },
     content: {
         type: String,
-        require: true
+        required: true
     },
     image: {
         type: String,
-        require: true
+        required: true
     }
 }, {
     timestamps: true,
