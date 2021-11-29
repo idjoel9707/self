@@ -19,6 +19,11 @@ const blogSchema = new Schema({
         type: String,
         required: true,
         // default: ''
+    },
+    archive: {
+        type: Integer,
+        required: true,
+        default: 0
     }
 }, {
     timestamps: true,

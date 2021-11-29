@@ -136,6 +136,29 @@ class BlogController {
             next(err)
         }
     }
+    static async archived(req, res, next) {
+        let token = await jwt.verify(req.token, secret)
+        try {
+            const { id } = req.params;
+            const userId = req.userData._id;
+            console.log(userId);
+
+            if (!id) return next({ message: "Missing ID Params" });
+      
+            const updatedData = await Board.findByIdAndUpdate(id, { $set: req.body }, { new: true });
+
+            if (userId != updatedData.user)
+                return next({ message: "You're not authorized to edit this part." });
+        
+            return res.status(200).json({
+                success: true,
+                message: "Successfully update board!",
+                data: updatedData,
+            });
+        } catch (err) {
+            next(err)
+        }
+    }
 }
 
 module.exports = BlogController;
