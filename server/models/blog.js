@@ -21,7 +21,7 @@ const blogSchema = new Schema({
         // default: ''
     },
     archive: {
-        type: Integer,
+        type: Number,
         required: true,
         default: 0
     }

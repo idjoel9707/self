@@ -5,8 +5,17 @@ const Blog = require('../server/controllers/blog')
 
 //calling middlewares
 const Auth = require('../server/middlewares/auth')
+const { getRoute } = require('../server/middlewares/api')
 
 function routes (app) {
+    //middleware
+    app.use((req, res, next) => {
+        res.on("finish", () => {
+            console.log(`${req.method} : ${getRoute(req)} : ${res.statusCode}`)
+        })
+        next()
+    })
+
     //routes
     app.get('/',(req, res) => {
         return res.status(res.statusCode).json({
