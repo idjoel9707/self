@@ -5,7 +5,4 @@ function getRoute(req) {
     return route ? `${baseUrl == '/' ? "" : baseUrl} ${route}` : 'unknown route';
 }
 
-
-
-
 module.exports = { getRoute };
