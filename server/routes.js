@@ -24,15 +24,19 @@ function routes (app) {
     })
 
     //User
-    app.post(`/${ROUTES}/login`, userController.Login)
-    app.post(`/${ROUTES}/register`, userController.Register)
-    //Blog
-    app.post(`/${ROUTES}/blog/create`, Auth.middleware, Blog.create)
-    app.put(`/${ROUTES}/blog/update`, Auth.middleware, Blog.update)
-    app.delete(`/${ROUTES}/blog/destroy`, Auth.middleware, Blog.delete)
+    app.post(`/administrator/login`, userController.Login)
+    app.post(`/administrator/register`, userController.Register)
+    //Blog Administrator
+    app.post(`/administrator/blog/create`, Auth.middleware, Blog.create)
+    app.put(`/administrator/blog/update`, Auth.middleware, Blog.update)
+    app.delete(`/administrator/blog/destroy`, Auth.middleware, Blog.delete)
+    //Blog for Outside
     app.get('/blog/category', Blog.getByCategory)
     app.get('/blog/:id', Blog.getById)
 
+    //archive blog for Administrator Only
+
+    //Where the socket GO?
 }
 
 module.exports = routes;
